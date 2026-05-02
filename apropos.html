@@ -170,6 +170,22 @@ body{
     animation:floatEmoji 4s ease-in-out infinite;
 }
 
+.story__img{
+    width:100%;max-width:380px;height:auto;
+    border-radius:16px;
+    filter:drop-shadow(0 8px 24px rgba(0,0,0,0.2));
+    animation:floatEmoji 4s ease-in-out infinite;
+}
+
+.value-card__img{
+    width:100px;height:100px;object-fit:contain;
+    margin-bottom:16px;
+    filter:drop-shadow(0 4px 12px rgba(0,0,0,0.15));
+    transition:transform 0.4s ease;
+}
+
+.value-card:hover .value-card__img{transform:scale(1.1) rotate(-5deg)}
+
 @keyframes floatEmoji{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 
 /* ═══════ VALUES ═══════ */
@@ -409,7 +425,7 @@ body{
             <p>Notre cagou veille à ce que chaque colis arrive chez vous en toute sécurité, partout sur le Caillou. 🦅</p>
         </div>
         <div class="glass-card story__visual">
-            <span class="story__emoji">🏝️</span>
+            <img src="img-story.png" alt="Cagou livreur" class="story__img">
         </div>
     </div>
 
@@ -418,17 +434,17 @@ body{
         <h2 class="values__title">Nos Valeurs</h2>
         <div class="values__grid">
             <div class="value-card">
-                <span class="value-card__icon">🤝</span>
+                <img src="img-accessibilite.png" alt="Accessibilité" class="value-card__img">
                 <h3 class="value-card__title">Accessibilité</h3>
                 <p class="value-card__desc">Des prix justes pour que tout le monde puisse améliorer son quotidien sans se ruiner.</p>
             </div>
             <div class="value-card">
-                <span class="value-card__icon">✅</span>
+                <img src="img-qualite.png" alt="Qualité" class="value-card__img">
                 <h3 class="value-card__title">Qualité</h3>
                 <p class="value-card__desc">Chaque produit est testé et sélectionné pour sa durabilité et son utilité au quotidien.</p>
             </div>
             <div class="value-card">
-                <span class="value-card__icon">💚</span>
+                <img src="img-proximite.png" alt="Proximité" class="value-card__img">
                 <h3 class="value-card__title">Proximité</h3>
                 <p class="value-card__desc">Un service client réactif, basé en Nouvelle-Calédonie, qui comprend vos besoins.</p>
             </div>
