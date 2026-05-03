@@ -582,33 +582,23 @@ async function loadHomeProducts() {
         if (snapshot.empty) return;
         
         const products = snapshot.docs.map(d => d.data());
-        const bestsellers = products.filter(p => p.tag === 'Best-seller').slice(0, 2);
-        const nouveautes = products.filter(p => p.tag === 'Nouveau').slice(0, 2);
-        const promos = products.filter(p => p.tag === 'Promo' || p.oldPrice).slice(0, 2);
-        
-        // If not enough tagged products, fill with recent
-        while (bestsellers.length < 2 && products.length > bestsellers.length) {
-            const p = products.find(x => !bestsellers.includes(x));
-            if (p) bestsellers.push(p); else break;
-        }
-        while (nouveautes.length < 2) {
-            const p = products.find(x => !nouveautes.includes(x) && !bestsellers.includes(x));
-            if (p) nouveautes.push(p); else break;
-        }
+        const phares = products.filter(p => p.section === 'phares').slice(0, 2);
+        const nouveautes = products.filter(p => p.section === 'nouveautes').slice(0, 2);
+        const promotions = products.filter(p => p.section === 'promotions').slice(0, 2);
         
         function renderThumbs(items) {
             return items.map(p => {
                 const imgContent = p.image 
                     ? '<img src="' + p.image + '" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:1">' 
-                    : '<span style="font-size:40px">' + (p.emoji || '📦') + '</span>';
+                    : '<span style="font-size:40px">📦</span>';
                 return '<div class="product-thumb"><div class="product-thumb__img">' + imgContent + '</div><div class="product-thumb__info"><p class="product-thumb__name">' + p.name + '</p><p class="product-thumb__price">' + fmtXPF(p.price) + '</p></div></div>';
             }).join('');
         }
         
         const cards = document.querySelectorAll('.section-card__products');
-        if (cards[0] && bestsellers.length) cards[0].innerHTML = renderThumbs(bestsellers);
+        if (cards[0] && phares.length) cards[0].innerHTML = renderThumbs(phares);
         if (cards[1] && nouveautes.length) cards[1].innerHTML = renderThumbs(nouveautes);
-        if (cards[2] && promos.length) cards[2].innerHTML = renderThumbs(promos);
+        if (cards[2] && promotions.length) cards[2].innerHTML = renderThumbs(promotions);
         
     } catch(e) {
         console.error('Erreur chargement produits:', e);
