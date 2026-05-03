@@ -721,11 +721,12 @@ function addToCart(productId) {
         cart.push({ id: product.id, name: product.name, price: product.price, qty: 1 });
         localStorage.setItem('kaledoshop-cart', JSON.stringify(cart));
         // Visual feedback
-        event.target.textContent = '✓ Ajouté';
-        event.target.style.background = 'rgba(42,110,78,0.6)';
+        const btn = event.target;
+        btn.textContent = '✓ Ajouté';
+        btn.style.background = 'rgba(42,110,78,0.6)';
         setTimeout(() => {
-            event.target.textContent = 'Ajouter au panier';
-            event.target.style.background = '';
+            btn.textContent = 'Ajouter au panier';
+            btn.style.background = '';
         }, 1200);
     }
 }
